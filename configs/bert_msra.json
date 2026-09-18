@@ -1,0 +1,15 @@
+{
+    "model_name": "bert-base-chinese",
+    "dataset": "msra",
+    "train_path": "data/msra/train_5k.txt",
+    "dev_path": "data/msra/dev_1k.txt",
+    "test_path": "data/msra/test_1k.txt",
+    "max_length": 128,
+    "batch_size": 16,
+    "epochs": 5,
+    "learning_rate": 3e-05,
+    "weight_decay": 0.01,
+    "warmup_ratio": 0.1,
+    "seed": 42,
+    "output_dir": "outputs"
+}
