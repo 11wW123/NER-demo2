@@ -210,8 +210,17 @@ def main(args):
 
         if dev_metrics["f1"] > best_f1:
             best_f1 = dev_metrics["f1"]
+
+            checkpoint = {
+                "epoch": epoch + 1,
+                "model_state_dict": model.state_dict(),
+                "optimizer_state_dict": optimizer.state_dict(),
+                "scheduler_state_dict": scheduler.state_dict(),
+                "best_f1": best_f1
+            }
+
             torch.save(
-                model.state_dict(),
+                checkpoint,
                 save_dir / "best_model.pt"
             )
 
@@ -220,11 +229,13 @@ def main(args):
         save_dir / "history.json"
     )
 
+    checkpoint = torch.load(
+        save_dir / "best_model.pt",
+        map_location=device
+    )
+
     model.load_state_dict(
-        torch.load(
-            save_dir / "best_model.pt",
-            map_location=device
-        )
+        checkpoint["model_state_dict"]
     )
 
     test_metrics, y_true, y_pred = evaluate(
