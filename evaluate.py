@@ -22,7 +22,14 @@ def find_entities(labels):
             entity_type = label[2:]
 
         elif label.startswith("I-"):
-            if start is None:
+            current_type = label[2:]
+            # I-后面的实体类型和当前实体类型不同
+            if start is not None and current_type != entity_type:
+                entities.add((entity_type, start, i - 1))
+                start = i
+                entity_type = current_type
+            # I-前面没有对应的实体
+            elif start is None:
                 start = i
                 entity_type = label[2:]
 
