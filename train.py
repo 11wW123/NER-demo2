@@ -71,13 +71,7 @@ def main(args):
 
     tokenizer = AutoTokenizer.from_pretrained(cfg.model_name)
 
-    labels = collect_labels(
-        [
-            cfg.train_path,
-            cfg.dev_path,
-            cfg.test_path,
-        ]
-    )
+    labels = collect_labels(cfg.train_path)
 
     label2id = {
         label: i
