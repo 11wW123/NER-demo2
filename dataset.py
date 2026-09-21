@@ -34,14 +34,15 @@ def read_bio_file(path):
 """
 收集数据集中出现的全部 BIO 标签
 """
-def collect_labels(paths):
+def collect_labels(path):
     labels = set()
-    for path in paths:
-        for _, tags in read_bio_file(path):
-            labels.update(tags)
+
+    for _, tags in read_bio_file(path):
+        labels.update(tags)
 
     labels = sorted(labels)
-    labels.remove("O")
+    if "O" in labels:
+        labels.remove("O")
     # 让O固定为0
     labels = ["O"] + labels
     return labels
