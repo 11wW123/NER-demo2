@@ -50,6 +50,23 @@ demo2/
 ```
 
 
+## 🛠️ 环境要求
+
+本项目实验环境：
+
+- Python 3.9.25
+- PyTorch 2.0.0
+- CUDA 11.8
+- Transformers 4.40.2
+- SwanLab 0.9.4
+
+依赖安装：
+
+```bash
+pip install -r requirements.txt
+```
+
+
 ## 🚀 实验运行
 
 ### bert-base-chinese + Weibo
